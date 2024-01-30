@@ -30,8 +30,12 @@ public class ProduitRESTController {
             // spécifier le format de retour en XML
             produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }
     )
-    public  List<Produit> getAllProduits() {
-        return produitRepos.findAll();
+    public  List<Produit> getAllProduits(@RequestParam(name = "categoryId", required = false) Long categoryId) {
+        return categoryId == null
+                ? produitRepos.findAll()
+                : categoryId == 0
+                    ? produitRepos.findAllByCategorieIsNull()
+                    : produitRepos.findAllByCategorieId(categoryId);
 
     }
 
