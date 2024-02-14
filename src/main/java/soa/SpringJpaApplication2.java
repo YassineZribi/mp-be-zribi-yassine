@@ -33,6 +33,9 @@ public class SpringJpaApplication2 {
         java.util.Date date2 = null;
         java.util.Date date3 = null;
         java.util.Date date4 = null;
+        java.util.Date date5 = null;
+        java.util.Date date6 = null;
+        java.util.Date date7 = null;
         java.util.Date dateFinPromotion = null;
         //trois objets de type date
         try
@@ -41,6 +44,9 @@ public class SpringJpaApplication2 {
             date2 = sdf.parse("2022-02-20");
             date3 = sdf.parse("2023-01-10");
             date4 = sdf.parse("2023-05-15");
+            date5 = sdf.parse("2023-06-20");
+            date6 = sdf.parse("2023-07-25");
+            date7 = sdf.parse("2023-09-11");
             dateFinPromotion = sdf.parse("2023-01-01");
              }
         catch (ParseException e) {
@@ -78,8 +84,29 @@ public class SpringJpaApplication2 {
         afficherTousLesProduits();
 
 
+        // Insérer un produit avec catégorie et sans stock
+        System.out.println("-5-Insérer un produit 'Puzzle' avec la catégorie 'Jouet' et sans stock ----------");
+        Produit pPuzzle =new Produit("PZL","Puzzle", 60, 12, date5 );
+        produitMetier.ajouterProduit(pPuzzle,catJouet);
+        afficherTousLesProduits();
+
+
+        // Insérer un produit avec catégorie et sans stock
+        System.out.println("-6-Insérer un produit 'Peluche' avec la catégorie 'Jouet' et sans stock ----------");
+        Produit pPeluche =new Produit("PLS","Peluche", 25, 36, date6 );
+        produitMetier.ajouterProduit(pPeluche,catJouet);
+        afficherTousLesProduits();
+
+
+        // Insérer un produit avec catégorie et sans stock
+        System.out.println("-7-Insérer un produit 'Disque SSD' avec la catégorie 'Informatique' et sans stock ----------");
+        Produit pDisque =new Produit("SSD","Disque SSD", 8, 200, date7 );
+        produitMetier.ajouterProduit(pDisque,catInformatique);
+        afficherTousLesProduits();
+
+
         // Changer la catégorie du produit 'Tablette' à 'Informatique'
-        System.out.println("-5-Changer la catégorie du produit 'Tablette' à 'Informatique'");
+        System.out.println("-8-Changer la catégorie du produit 'Tablette' à 'Informatique'");
         boolean resultat =produitMetier.changerCategorieProduit(3L,1L);
         if (resultat)
             System.out.println("----Succès du changement de catégorie----'");
@@ -88,12 +115,12 @@ public class SpringJpaApplication2 {
         afficherTousLesProduits();
 
         //Rendre tous les produits achetés avant '2023' en promotion
-        System.out.println("-6-Rendre tous les produits achetés avant '2023' en promotion");
+        System.out.println("-9-Rendre tous les produits achetés avant '2023' en promotion");
         produitMetier.rendreProduitsEnPromotionAvant(dateFinPromotion);
         afficherTousLesProduits();
 
         //Calculer le coût de vente de tous les produits en stock en appliquant la remise sur les produits en promotion
-        System.out.println("-7-Calculer le coût de vente de tous les produits en stock en appliquant la remise sur les produits en promotion");
+        System.out.println("-10-Calculer le coût de vente de tous les produits en stock en appliquant la remise sur les produits en promotion");
         System.out.println("Cout de vente du stock:"+produitMetier.calculerCoutVenteStock(50));
 
     }
